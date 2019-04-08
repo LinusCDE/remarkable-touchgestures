@@ -9,8 +9,8 @@
 
 #define TOUCHSCREEN "/dev/input/event1"
 #define BUTTONS "/dev/input/event2"
-#define MAX_SLOTS 5 
-#define SCREEN_WIDTH 1404 
+#define MAX_SLOTS 5
+#define SCREEN_WIDTH 1404
 #define SCREEN_HEIGHT 1872
 
 
@@ -134,12 +134,12 @@ void process_finger(struct Finger *f, struct timeval *t, int slot){
         }
         printf("slot %d x:%d, y:%d  \n", slot, f->x, f->y);
 
-        int nav_stripe = SCREEN_WIDTH /3;
-        if (x < nav_stripe) { 
+        int nav_stripe = SCREEN_WIDTH / 3;
+        if (x > nav_stripe) {
             printf("Back\n");
             emit(Left);
         }
-        else if (x > nav_stripe*2) {
+        else if (x < nav_stripe*2) {
             printf("Next\n");
             emit(Right);
         }
